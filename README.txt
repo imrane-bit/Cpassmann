@@ -22,12 +22,12 @@ DESCRIPTION
 
    ++if on Fedora run  : 
      sudo dnf makecache --refresh
-     sudo dnf -y install libsodium
+     sudo dnf -y install libsodium-devel
      sudo dnf -y install gcc
      sudo dnf -y install python3
    ++if on Arch or Arch based sysytems:
      sudo pacman -Syu 
-     sudo pacman -S libsodium
+     sudo pacman -S libsodium-devel
      sudo pacman -S gcc
      sudo pacman -S python3
    ++if on ubuntu or ubuntu based systems :

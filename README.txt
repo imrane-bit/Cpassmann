@@ -39,9 +39,9 @@ DESCRIPTION
 -the packages should be available in most package managers whatever distro you're using  
 
 INSTALATION
+you need first to specify to edit the path to the usb in the source code to the path of yours and also the path of your home directory , they are in the head of  the ccode like the following :
+    
 
-
-  you need first to specify to edit the path to the usb in the source code to the path of yours and also the path of your home directory , they are in the head of  the ccode like the following :
     #include <string.h> 
     #include <stdio.h>
     #include <sodium.h>
@@ -56,7 +56,8 @@ INSTALATION
     then cd to the folder of passmann and run the following commands:
            chmod +x make
            ./make
-           and now you're good to go 
+
+and now you're good to go 
 
 
 USAGE :

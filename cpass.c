@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
-char *usbpath = "/run/media/qbit/whitehouse/" ;/*the full path to your usb between inside "" 
+char *usbpath = "" ;/*the full path to your usb between inside "" 
     example :char *usbpath = "/run/media/qubit/myusb" */;
 
 char *home ;

@@ -288,10 +288,11 @@ void getaccount(char *thefile){
   sprintf(commandd,"cp %s temp",thefile);
   system(commandd);
   FILE *accounts = fopen("temp","a");
+  FILE *accountss = fopen("temp","r");
   char* test = malloc(2000*sizeof(int));
   int U =3;
   int B =0;
-  while (fgets(test,3000,accounts) != NULL && U-- >=0){
+  while (fgets(test,3000,accountss) != NULL && U-- >=0){
     printf("%s\n",test);
     ++B;
   }

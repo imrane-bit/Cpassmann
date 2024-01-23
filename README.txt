@@ -1,7 +1,7 @@
 cpassmann 1.0 by Qubit                cpassmann Reference Guide                 
 
 NAME
-       cpassmannn - c passwords manager
+       cpassmann - c passwords manager
 
 SYNOPSIS
 

@@ -54,9 +54,9 @@ INSTALATION
 
     write the coresponding info between the "" .
     then cd to the folder of passmann and run the following commands:
-    chmod +x makecpass
-    ./makecpass 
-    and now you're good to go 
+           chmod +x make
+           ./make
+           and now you're good to go 
 
 
 USAGE :

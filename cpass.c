@@ -7,9 +7,7 @@
 char *usbpath = "/run/media/qbit/whitehouse/" ;/*the full path to your usb between inside "" 
     example :char *usbpath = "/run/media/qubit/myusb" */;
 
-char *home = "/home/qbit/";/* the full path to your home directory here
-    example : char *home = "/home/qbit/" */
-
+char *home ;
 
 char *remend(char *lineh){
   char *c = malloc(sizeof(char));
@@ -44,15 +42,16 @@ char *bk1;
 char *bk2;
 
 int defpaths(void){
+  home =  malloc(200*sizeof(int));
   cpasfolder = malloc(1000*sizeof(char));
-  bk= malloc(1000*sizeof(char));
+  bk= malloc(2000*sizeof(char));
   bk1= malloc(1000*sizeof(char));
-  bk2= malloc(1000*sizeof(char));
-  sprintf(cpasfolder,"%s.cpassmann/",remend(home));
+  bk2= malloc(3000*sizeof(char));
+  sprintf(cpasfolder,"%s/.cpassmann/",getenv("HOME"));
   sprintf(bk,"%s.backup",remend(cpasfolder));
   sprintf(bk1,"%s.cpassmannkey",remend(usbpath));
   sprintf(bk2,"%s.cpassmannkey/.backup",remend(usbpath));
-    struct stat sb; 
+  struct stat sb; 
   struct stat ab; 
   struct stat kb; 
   struct stat lb; 
@@ -63,7 +62,7 @@ int defpaths(void){
     if(mkdir(cpasfolder,S_IRWXU) != -1)
      ; 
    else {
-     printf("eror mkdir2\n");
+     printf("eror mkdir1\n");
      return -1;
    }
   }  
@@ -72,7 +71,7 @@ int defpaths(void){
   }
   else {
     if(mkdir(bk,S_IRWXU) != -1)
-     ; 
+      ;
    else {
      printf("eror mkdir2\n");
      return -1;
@@ -85,37 +84,36 @@ int defpaths(void){
     if(mkdir(bk1,S_IRWXU) != -1)
      ; 
    else {
-     printf("eror mkdir2\n");
+     printf("eror mkdir3\n");
      return -1;
    }
   } 
   if (stat(bk2, &lb) == 0) {
-    ;
   }
   else {
     if(mkdir(bk2,S_IRWXU) != -1)
-     ; 
+      ;
    else {
-     printf("eror mkdir2\n");
+     printf("eror mkdir4\n");
      return -1;
    }
   }  
  
 
 
-  bkfile = malloc(1000*sizeof(char));
-  sprintf(bkfile,"%s.cpassmann/.backup/accounts",home);
-  filepath= malloc(1000*sizeof(char));
-  sprintf(filepath,"%s.cpassmann/accounts",home);
+  bkfile = malloc(4000*sizeof(char));
+  sprintf(bkfile,"%s/.cpassmann/.backup/accounts",getenv("HOME"));
+  filepath= malloc(4000*sizeof(char));
+  sprintf(filepath,"%s/.cpassmann/accounts",getenv("HOME"));
   if (fopen(filepath,"r") != NULL)
     ;
   else {
     fopen(filepath,"a");
   }
 
-  bkkey= malloc(1000*sizeof(int));
+  bkkey= malloc(4000*sizeof(int));
   sprintf(bkkey,"%s.cpassmannkey/.backup/key.key",usbpath);
-  keypath = malloc(1000*sizeof(int));
+  keypath = malloc(4000*sizeof(int));
   sprintf(keypath,"%s.cpassmannkey/key.key",usbpath);
 }
 char *accountline;

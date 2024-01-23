@@ -2,14 +2,28 @@
 #include <stdio.h>
 #include <sodium.h>
 #include <stdlib.h>
+#include <sys/stat.h>
 
-char *usbpath = "" ;/*the full path to your usb between inside "" 
+char *usbpath = "/run/media/qbit/whitehouse/" ;/*the full path to your usb between inside "" 
     example :char *usbpath = "/run/media/qubit/myusb" */;
 
-char *home = "";/* the full path to your home directory here
+char *home = "/home/qbit/";/* the full path to your home directory here
     example : char *home = "/home/qbit/" */
 
 
+char *remend(char *lineh){
+  char *c = malloc(sizeof(char));
+  char *output = malloc(1000*sizeof(char));
+  while(*(c=lineh++) != '\0'){
+    if (*c == '\n'){
+      continue;
+    }
+    else {
+      strncat(output,c,1);
+    }
+  }
+  return output;
+}
 //backup file path 
 char *bkfile; 
 
@@ -20,11 +34,85 @@ char *filepath;
 char *bkkey;
 //keypath 
 char *keypath;
-void defpaths(void){
+
+char *cpasfolder;
+
+char *bk;
+
+char *bk1;
+
+char *bk2;
+
+int defpaths(void){
+  cpasfolder = malloc(1000*sizeof(char));
+  bk= malloc(1000*sizeof(char));
+  bk1= malloc(1000*sizeof(char));
+  bk2= malloc(1000*sizeof(char));
+  sprintf(cpasfolder,"%s.cpassmann/",remend(home));
+  sprintf(bk,"%s.backup",remend(cpasfolder));
+  sprintf(bk1,"%s.cpassmannkey",remend(usbpath));
+  sprintf(bk2,"%s.cpassmannkey/.backup",remend(usbpath));
+    struct stat sb; 
+  struct stat ab; 
+  struct stat kb; 
+  struct stat lb; 
+  if (stat(cpasfolder, &sb) == 0) {
+    ;
+  }
+  else {
+    if(mkdir(cpasfolder,S_IRWXU) != -1)
+     ; 
+   else {
+     printf("eror mkdir2\n");
+     return -1;
+   }
+  }  
+  if (stat(bk, &ab) == 0) {
+    ;
+  }
+  else {
+    if(mkdir(bk,S_IRWXU) != -1)
+     ; 
+   else {
+     printf("eror mkdir2\n");
+     return -1;
+   }
+  }  
+  if (stat(bk1, &kb) == 0) {
+    ;
+  }
+  else {
+    if(mkdir(bk1,S_IRWXU) != -1)
+     ; 
+   else {
+     printf("eror mkdir2\n");
+     return -1;
+   }
+  } 
+  if (stat(bk2, &lb) == 0) {
+    ;
+  }
+  else {
+    if(mkdir(bk2,S_IRWXU) != -1)
+     ; 
+   else {
+     printf("eror mkdir2\n");
+     return -1;
+   }
+  }  
+ 
+
+
   bkfile = malloc(1000*sizeof(char));
   sprintf(bkfile,"%s.cpassmann/.backup/accounts",home);
   filepath= malloc(1000*sizeof(char));
   sprintf(filepath,"%s.cpassmann/accounts",home);
+  if (fopen(filepath,"r") != NULL)
+    ;
+  else {
+    fopen(filepath,"a");
+  }
+
   bkkey= malloc(1000*sizeof(int));
   sprintf(bkkey,"%s.cpassmannkey/.backup/key.key",usbpath);
   keypath = malloc(1000*sizeof(int));
@@ -159,20 +247,6 @@ void putline(char *line , FILE *file){
   fputs(line, file);
   return ;
 }
-char *remend(char *lineh){
-  char *c = malloc(sizeof(char));
-  char *output = malloc(400*sizeof(char));
-  while((*c=*lineh++) != '\0'){
-    if (*c == '\n'){
-     continue;
-    }
-    else {
-      strncat(output,c,1);
-    }
-  }
-  return output;
-
-}
 
 
 
@@ -182,6 +256,11 @@ void showallaccs(char *filename){
   accountline= malloc(1000*sizeof(char));
   FILE *file = fopen(filename,"r");
   while (fgets(accountline ,1000,file) != NULL ){
+    if (i == 0){
+      ++i;
+      continue;
+    }
+
     printaccount(i++);
     accountline= calloc(1000,sizeof(char));
     continue ;
@@ -209,7 +288,20 @@ void getaccount(char *thefile){
   sprintf(commandd,"cp %s temp",thefile);
   system(commandd);
   FILE *accounts = fopen("temp","a");
+  char* test = malloc(2000*sizeof(int));
+  int U =3;
+  int B =0;
+  while (fgets(test,3000,accounts) != NULL && U-- >=0){
+    printf("%s\n",test);
+    ++B;
+  }
+if (B==0){
+  putline("\n",accounts);
   putline(acc,accounts);
+}
+else {
+  putline(acc,accounts);
+}
   free(name);
   free(email);
   free(password);
@@ -444,13 +536,7 @@ int main (int argc, char *argv[]){
   U = 3;
   s = a = d = m = A = B = 0;
   char *test = malloc(10000000*sizeof(char));
-
-  if (fopen(filepath,"r"))
-    ;
-  else {
-    fopen(filepath,"a");
-  }
-    
+     
 
   if ((argc > 1 ) ){
     if (*argv[1] == '-'){
@@ -468,7 +554,7 @@ int main (int argc, char *argv[]){
         }
         fclose(decryptiontest);
         free(test);
-        if (B != 1){
+        if (B != 1 ){
           if ( *(argv[1]+1)== 'A'){
             showallaccs(filepath);
           }

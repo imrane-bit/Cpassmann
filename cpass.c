@@ -44,14 +44,14 @@ char *randpass(int i){
 
 int encrypt(char *filename){
   char *command = malloc(100*sizeof(char));
-  sprintf(command,"python3 /usr/local/bin/encryption/en.py %s ",filename);
+  sprintf(command,"python3 /usr/local/bin/en.py %s ",filename);
   system(command);
   free(command);
   return 0;
 }
 int decrypt(char *filename ,char *key){
   char *command = malloc(300*sizeof(char));
-  sprintf(command,"python3 /usr/local/bin/encryption/dec.py %s %s",filename,key);
+  sprintf(command,"python3 /usr/local/bin/dec.py %s %s",filename,key);
   system(command);
   free(command);
    return 0;

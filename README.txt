@@ -10,12 +10,33 @@ SYNOPSIS
 DESCRIPTION
   Cpassmann is a simple but usefull terminal password manager by Qubit, it not meant to compete with the already available passwords managers but i hope the users find it helpfull ,it basically gives you the ability to protect your password with encryption while having easy access to them , the program needs a usb in order to store the very variable encryption key .
 
-  cpassmann is a enchanted version made with c of a  previous version i made with python , the encryption and decryption process still rely on python because of some complication hat encoutered me while emplementing symetric encryption in c  , the encrypt and decrypt scripts are in the folder named encryption , they rely on the python cryptography library. otherwise the program is totally in c .
+  cpassmann is a enchanted version made with c of a  previous version i made with python , the encryption and decryption process still rely on python because of some complication hat encoutered me while emplementing symetric encryption in c , the encryption and decryption scripts rely on the python cryptography library. otherwise the program is totally in c .
 
   the program have not much of dependencies , you aonly need :
   *a linux operating sysytem
   *libsodium cryptography lib in C .
   *python 3
+  *gcc or any compiler
+   
+   +you can install all of them by running the following commands :
+
+   ++if on Fedora run  : 
+     sudo dnf makecache --refresh
+     sudo dnf -y install libsodium
+     sudo dnf -y install gcc
+     sudo dnf -y install python3
+   ++if on Arch or Arch based sysytems:
+     sudo pacman -Syu 
+     sudo pacman -S libsodium
+     sudo pacman -S gcc
+     sudo pacman -S python3
+   ++if on ubuntu or ubuntu based systems :
+     sudo apt-get update 
+     sudo apt-get install libsodium-dev
+     sudo apt-get install python3
+     sudo apt-get install gcc
+
+-the packages should be available in most package managers whatever distro you're using  
 
 INSTALATION
 

@@ -2,5 +2,5 @@
 
 
 gcc cpass.c -lsodium -o cpassmann
-sudo mv cpassmann /usr/local/bin && sudo cp -r encryption /usr/local/bin
+sudo mv cpassmann /usr/local/bin && sudo cp  en.py /usr/local/bin && sudo cp dec.py /usr/local/bin/
 

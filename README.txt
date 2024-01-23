@@ -49,8 +49,7 @@ you need first to specify to edit the path to the usb in the source code to the 
  
     char *usbpath = "" ;/*the full path to your usb between inside "" 
     example :char *usbpath = "/run/media/qubit/myusb" */;
-    char *home = "";/* the full path to your home directory here
-    example : /home/qbit/*/
+   
 
     write the coresponding info between the "" .
     then cd to the folder of passmann and run the following commands:
